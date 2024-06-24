@@ -1,19 +1,25 @@
 import os
 import csv
 
+print("Election Results")
+print("-------------------------")
+
+
 csvpath = os.path.join('Resources', 'election_data.csv')
 
+total_votes = 0
+
 with open(csvpath) as csvfile:
-    csvreader = csv.reader(csvfile, delimiter = ",")
- 
-    csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    pypoll = csv.reader(csvfile, delimiter =",")
+    next(pypoll)
 
-    for row in csvreader:
-        print(row)
+    rows = list(pypoll)
 
-
-
+    for row in rows:
+        total_votes += 1
+    
+print(f"Total Votes:  {total_votes}")
+print("------------------")
 
 #Create a script that analyzes the votes and calculates the following:
 #The total number of votes cast

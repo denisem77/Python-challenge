@@ -1,10 +1,6 @@
 import os
 import csv
 
-print("Election Results")
-print("-------------------------")
-
-
 csvpath = os.path.join('Resources', 'election_data.csv')
 
 total_votes = 0
@@ -13,7 +9,9 @@ voted_candidates = {}
 
 with open(csvpath) as csvfile:
     pypoll = csv.reader(csvfile, delimiter =",")
-    next(pypoll)
+   
+    header = next(pypoll)
+    print(header)
 
     rows = list(pypoll)
 
@@ -27,6 +25,9 @@ with open(csvpath) as csvfile:
             voted_candidates[candidates] = 1
 
 winner = max(voted_candidates, key=voted_candidates.get)
+
+print("Election Results")
+print("-------------------------")
 print(f"Total Votes: {total_votes}")
 print("------------------")
 for candidates, votes in voted_candidates.items():

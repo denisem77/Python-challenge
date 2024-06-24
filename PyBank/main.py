@@ -1,20 +1,38 @@
 import os
 import csv
 
-csvpath = os.path.join('Resources', 'budget_data.csv')
-
-with open(csvpath) as csvfile:
-    csvreader = csv.reader(csvfile, delimiter = ",")
- 
-    
-
 print("Financial Analysis")
 print("--------------------")   
 
-   
+csvpath = os.path.join('Resources', 'budget_data.csv')
+unique_months = set()
+
+net_amount = 0
+
+with open(csvpath) as csvfile:
+    pybank = csv.reader(csvfile, delimiter = ",")
+    next(pybank)
+
+    rows = list(pybank) 
+
+    for row in rows:
+        date = row[0]
+        unique_months.add(date)
+        net_amount += int(row[1])
+      
+    total_months = len(unique_months 
+                         )
+    print(f"Total Months: {total_months}")
+    print(f"Total: ${net_amount}")
+
+    
+
+ 
+
+    
     #    Title: Financial Analysis
     # ------------------------------
-    # The total number of months included in the dataset
+    # The total number of months included in the dataset:complete
     # The net total amount of "Profit/Losses" over the entire period
     # The changes in "Profit/Losses" over the entire period, and the the average of those changes
     # The greatest increase in profits (date and amount) over the entire period.

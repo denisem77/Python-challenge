@@ -16,7 +16,10 @@ greatest_dec = {"date": "", "amount": float("inf")}
 
 with open(csvpath) as csvfile:
     pybank = csv.reader(csvfile, delimiter = ",")
-    next(pybank)
+    
+    header = next(pybank)
+   
+    print(header)
 
     rows = list(pybank) 
 
@@ -46,6 +49,8 @@ with open(csvpath) as csvfile:
     total_months = len(unique_months)
     avg_change = sum(change for _, change in changes) / len(changes) if changes else 0
 
+    print("Financial Analysis")
+    print("--------------------")  
     print(f"Total Months: {total_months}")
     print(f"Total: ${net_amount}")
     print(f"Average Change: ${avg_change: .2f}")

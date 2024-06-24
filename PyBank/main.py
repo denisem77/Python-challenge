@@ -52,8 +52,20 @@ with open(csvpath) as csvfile:
     print(f"Greatest increase in Profits: {greatest_inc['date']} (${greatest_inc['amount']})")
     print(f"Greatest decrease in Profits: {greatest_dec['date']} (${greatest_dec['amount']})")
 
- 
+    output_file = os.path.join('Analysis', "PyBank_analysis.txt")
+   
+    with open(output_file, "w") as file:
+        file.write("Financial Analysis\n")
+        file.write("---------------------\n")
+        file.write(f"Total Months: {total_months}\n")
+        file.write(f"Total: ${net_amount}\n")
+        file.write(f"Average Change: ${avg_change: .2f}") 
+        file.write(f"Greatest increase in Profits: {greatest_inc['date']} (${greatest_inc['amount']})\n") 
+        file.write(f"Greatest decrease in Profits: {greatest_dec['date']} (${greatest_dec['amount']})\n")
 
+    print(f"Results have been save to {output_file}\n")
+    
+    
     
     #    Title: Financial Analysis
     # ------------------------------

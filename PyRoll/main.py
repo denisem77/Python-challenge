@@ -26,17 +26,38 @@ with open(csvpath) as csvfile:
         else:
             voted_candidates[candidates] = 1
 
-
-print(f"Total Votes:  {total_votes}")
+winner = max(voted_candidates, key=voted_candidates.get)
+print(f"Total Votes: {total_votes}")
 print("------------------")
 for candidates, votes in voted_candidates.items():
-    print(f"{candidates}:  {votes} ")
+    percentage = votes / total_votes * 100
+    print(f"{candidates}: {percentage: 06.3f}% ({votes}) ")
+    
+print("------------------------------------")
+print(f"Winner: {winner}")
+print("--------------------------------------")
+
+output_file = os.path.join('Analysis', 'PyPoll_Analysis.txt')
+with open(output_file, "w") as file:
+    file.write("Election Results\n")
+    file.write("------------------\n")
+    file.write(f"Total Votes: {total_votes}\n")
+    file.write("-------------------------\n")
+    for candidates, votes in voted_candidates.items():
+        percentage = votes / total_votes * 100
+        file.write(f"{candidates}: {percentage: 06.3f}% ({votes})\n")
+   
+    file.write("----------------------------------\n")
+    file.write(f"Winner: {winner}\n")
+    file.write("-------------------------\n")
+
+print(f"Results have been saved to {output_file}")
 
 #Create a script that analyzes the votes and calculates the following:
 #The total number of votes cast: Complete
-#A complete list of candidates who received votes
-#The percentage of votes each candidate won
-# The total number of votes each candidate won
+#A complete list of candidates who received votes: COmplete
+#The percentage of votes each candidate won: Complete
+# The total number of votes each candidate won: complete
 # The winner of the election based on popular vote
 
 # These are the results:
